@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Gallery: {{ gallery.name }}</h1>
+
+        <div class="gallery">
+
+            {{ dump(gallery.images.count()) }}
+            {{ dump(gallery.images) }}
+
+        </div>
+
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
