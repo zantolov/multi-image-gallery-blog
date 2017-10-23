@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use InvalidArgumentException;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileManager

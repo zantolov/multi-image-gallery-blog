@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Gallery;
-use App\Entity\Image;
 use App\Form\EditGalleryType;
-use App\Form\EditImageType;
 use App\Service\UserManager;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,7 +19,6 @@ use Twig_Environment;
 
 class EditGalleryController
 {
-
     /** @var EntityManager */
     private $em;
 
@@ -40,15 +37,6 @@ class EditGalleryController
     /** @var  UserManager */
     private $userManager;
 
-    /**
-     * EditImageController constructor.
-     * @param EntityManager $em
-     * @param FormFactoryInterface $formFactory
-     * @param FlashBagInterface $flashBag
-     * @param RouterInterface $router
-     * @param Twig_Environment $twig
-     * @param UserManager $userManager
-     */
     public function __construct(
         EntityManager $em,
         FormFactoryInterface $formFactory,

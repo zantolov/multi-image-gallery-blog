@@ -43,7 +43,8 @@
             "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "mkdir -p var/uploads"
         ],
         "post-update-cmd": [
             "@auto-scripts"

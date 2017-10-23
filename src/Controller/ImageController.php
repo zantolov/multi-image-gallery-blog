@@ -12,18 +12,12 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ImageController
 {
-
     /** @var EntityManager */
     private $em;
 
     /** @var  FileManager */
     private $fileManager;
 
-    /**
-     * ImageController constructor.
-     * @param EntityManager $em
-     * @param FileManager $fileManager
-     */
     public function __construct(EntityManager $em, FileManager $fileManager)
     {
         $this->em = $em;

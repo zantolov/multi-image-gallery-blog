@@ -31,14 +31,6 @@ class RegistrationController
     /** @var UserManager */
     private $userManager;
 
-    /**
-     * RegistrationController constructor.
-     * @param FormFactoryInterface $formFactory
-     * @param Twig_Environment $twig
-     * @param FlashBagInterface $flashBag
-     * @param RouterInterface $router
-     * @param UserManager $userManager
-     */
     public function __construct(
         FormFactoryInterface $formFactory,
         Twig_Environment $twig,
@@ -52,7 +44,6 @@ class RegistrationController
         $this->router = $router;
         $this->userManager = $userManager;
     }
-
 
     private function createRegistrationForm(Request $request)
     {

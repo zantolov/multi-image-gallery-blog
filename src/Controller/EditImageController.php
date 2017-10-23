@@ -20,7 +20,6 @@ use Twig_Environment;
 
 class EditImageController
 {
-
     /** @var EntityManager */
     private $em;
 
@@ -39,15 +38,6 @@ class EditImageController
     /** @var  UserManager */
     private $userManager;
 
-    /**
-     * EditImageController constructor.
-     * @param EntityManager $em
-     * @param FormFactoryInterface $formFactory
-     * @param FlashBagInterface $flashBag
-     * @param RouterInterface $router
-     * @param Twig_Environment $twig
-     * @param UserManager $userManager
-     */
     public function __construct(
         EntityManager $em,
         FormFactoryInterface $formFactory,

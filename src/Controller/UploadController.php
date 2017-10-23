@@ -19,7 +19,6 @@ use Twig_Environment;
 
 class UploadController
 {
-
     /** @var  Twig_Environment */
     private $twig;
 
@@ -38,15 +37,6 @@ class UploadController
     /** @var  UserManager */
     private $userManager;
 
-    /**
-     * UploadController constructor.
-     * @param Twig_Environment $twig
-     * @param FlashBagInterface $flashBag
-     * @param RouterInterface $router
-     * @param FileManager $fileManager
-     * @param EntityManager $em
-     * @param UserManager $userManager
-     */
     public function __construct(
         Twig_Environment $twig,
         FlashBagInterface $flashBag,
@@ -63,14 +53,12 @@ class UploadController
         $this->userManager = $userManager;
     }
 
-
     /**
      * @Route("/private/upload", name="upload")
      */
     public function renderUploadScreenAction(Request $request)
     {
-        $view = $this->twig->render('gallery/upload.html.twig', [
-        ]);
+        $view = $this->twig->render('gallery/upload.html.twig');
 
         return new Response($view);
     }

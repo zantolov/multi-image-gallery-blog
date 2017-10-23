@@ -21,12 +21,6 @@ class GalleryController
     /** @var  UserManager */
     private $userManager;
 
-    /**
-     * GalleryController constructor.
-     * @param Twig_Environment $twig
-     * @param EntityManager $em
-     * @param UserManager $userManager
-     */
     public function __construct(Twig_Environment $twig, EntityManager $em, UserManager $userManager)
     {
         $this->twig = $twig;
