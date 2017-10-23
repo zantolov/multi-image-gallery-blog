@@ -25,7 +25,7 @@ class Image
      * @var string
      * @ORM\Column(type="string", nullable=false)
      */
-    private $filepath;
+    private $originalFilename;
 
     /**
      * @var string
@@ -49,13 +49,13 @@ class Image
     /**
      * Image constructor.
      * @param UuidInterface $id
-     * @param string $filepath
+     * @param string $originalFilename
      * @param string $filename
      */
-    public function __construct(UuidInterface $id, $filepath, $filename)
+    public function __construct(UuidInterface $id, $originalFilename, $filename)
     {
         $this->id = $id;
-        $this->filepath = $filepath;
+        $this->originalFilename = $originalFilename;
         $this->filename = $filename;
     }
 
@@ -70,9 +70,17 @@ class Image
     /**
      * @return string
      */
-    public function getFilepath()
+    public function getOriginalFilename()
     {
-        return $this->filepath;
+        return $this->originalFilename;
+    }
+
+    /**
+     * @param string $originalFilename
+     */
+    public function setOriginalFilename(string $originalFilename)
+    {
+        $this->originalFilename = $originalFilename;
     }
 
     /**
@@ -113,6 +121,11 @@ class Image
     public function setGallery(Gallery $gallery)
     {
         $this->gallery = $gallery;
+    }
+
+    public function canEdit(User $user)
+    {
+        return $this->getGallery()->isOwner($user);
     }
 
 }

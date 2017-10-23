@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -50,12 +51,19 @@ class Gallery
     private $user;
 
     /**
+     * @var DateTime
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $createdAt;
+
+    /**
      * @param Uuid $id
      */
     public function __construct(UuidInterface $id)
     {
         $this->id = $id;
         $this->images = new ArrayCollection();
+        $this->createdAt = new DateTime();
     }
 
     /**
@@ -135,6 +143,19 @@ class Gallery
     public function setUser(User $user)
     {
         $this->user = $user;
+    }
+
+    public function isOwner(User $user)
+    {
+        return $this->user === $user;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getCreatedAt(): DateTime
+    {
+        return $this->createdAt;
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Gallery;
+use App\Service\UserManager;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -17,15 +18,20 @@ class GalleryController
     /** @var  EntityManager */
     private $em;
 
+    /** @var  UserManager */
+    private $userManager;
+
     /**
      * GalleryController constructor.
      * @param Twig_Environment $twig
      * @param EntityManager $em
+     * @param UserManager $userManager
      */
-    public function __construct(Twig_Environment $twig, EntityManager $em)
+    public function __construct(Twig_Environment $twig, EntityManager $em, UserManager $userManager)
     {
         $this->twig = $twig;
         $this->em = $em;
+        $this->userManager = $userManager;
     }
 
     /**
@@ -38,8 +44,15 @@ class GalleryController
             throw new NotFoundHttpException();
         }
 
+        $canEdit = false;
+        $currentUser = $this->userManager->getCurrentUser();
+        if (!empty($currentUser)) {
+            $canEdit = $gallery->isOwner($currentUser);
+        }
+
         $view = $this->twig->render('gallery/single-gallery.html.twig', [
             'gallery' => $gallery,
+            'canEdit' => $canEdit,
         ]);
 
         return new Response($view);

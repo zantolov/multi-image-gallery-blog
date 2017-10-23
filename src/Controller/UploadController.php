@@ -65,7 +65,7 @@ class UploadController
 
 
     /**
-     * @Route("/upload", name="upload")
+     * @Route("/private/upload", name="upload")
      */
     public function renderUploadScreenAction(Request $request)
     {
@@ -76,7 +76,7 @@ class UploadController
     }
 
     /**
-     * @Route("/upload-process", name="upload.process")
+     * @Route("/private/upload-process", name="upload.process")
      */
     public function processUploadAction(Request $request)
     {

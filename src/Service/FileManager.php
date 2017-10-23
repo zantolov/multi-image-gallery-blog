@@ -37,5 +37,10 @@ class FileManager
         return $file;
     }
 
+    public function getFilePath($filename)
+    {
+        return $this->getUploadsDirectory() . DIRECTORY_SEPARATOR . $filename;
+    }
+
 
 }

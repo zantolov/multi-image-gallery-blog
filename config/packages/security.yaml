@@ -30,4 +30,4 @@ security:
                 target: /
 
     access_control:
-        - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/private, roles: ROLE_USER }

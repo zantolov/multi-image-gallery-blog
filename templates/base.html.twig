@@ -59,6 +59,15 @@
             crossorigin="anonymous"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/dropzone.js"></script>
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script>
+        var markdownEditors = [];
+        $(function () {
+            $('.markdown-textarea').each(function () {
+                var simplemde = new SimpleMDE({element: $(this).get(0)});
+                markdownEditors.push(simplemde);
+            });
+        });
+    </script>
 
 {% endblock %}
 </body>
