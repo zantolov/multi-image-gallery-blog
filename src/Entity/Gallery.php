@@ -56,9 +56,6 @@ class Gallery
      */
     private $createdAt;
 
-    /**
-     * @param Uuid $id
-     */
     public function __construct(UuidInterface $id)
     {
         $this->id = $id;

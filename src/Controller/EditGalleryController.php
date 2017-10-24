@@ -53,7 +53,6 @@ class EditGalleryController
         $this->userManager = $userManager;
     }
 
-
     /**
      * @Route("/gallery/{id}/delete", name="gallery.delete")
      */

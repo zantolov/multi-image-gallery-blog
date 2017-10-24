@@ -31,4 +31,5 @@ class AvailableEmailConstraintValidator extends ConstraintValidator
             $this->context->addViolation($constraint->message);
         }
     }
+
 }

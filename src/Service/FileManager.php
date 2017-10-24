@@ -9,10 +9,6 @@ class FileManager
 {
     private $path;
 
-    /**
-     * FileManager constructor.
-     * @param $path
-     */
     public function __construct($path)
     {
         if (!is_dir($path)) {
@@ -22,12 +18,10 @@ class FileManager
         $this->path = $path;
     }
 
-
     private function getUploadsDirectory()
     {
         return $this->path;
     }
-
 
     public function upload(UploadedFile $file, $filename)
     {
@@ -40,6 +34,5 @@ class FileManager
     {
         return $this->getUploadsDirectory() . DIRECTORY_SEPARATOR . $filename;
     }
-
 
 }

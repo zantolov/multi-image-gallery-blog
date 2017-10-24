@@ -46,12 +46,6 @@ class Image
      */
     private $gallery;
 
-    /**
-     * Image constructor.
-     * @param UuidInterface $id
-     * @param string $originalFilename
-     * @param string $filename
-     */
     public function __construct(UuidInterface $id, $originalFilename, $filename)
     {
         $this->id = $id;

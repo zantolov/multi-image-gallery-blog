@@ -27,6 +27,4 @@ class EditImageType extends AbstractType
                 ],
             ]);
     }
-
-
 }

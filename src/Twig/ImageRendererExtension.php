@@ -12,10 +12,6 @@ class ImageRendererExtension extends Twig_Extension
     /** @var  RouterInterface */
     private $router;
 
-    /**
-     * ImageRendererExtension constructor.
-     * @param RouterInterface $router
-     */
     public function __construct(RouterInterface $router)
     {
         $this->router = $router;
