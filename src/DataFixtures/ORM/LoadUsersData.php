@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class LoadUsersData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {
-    const COUNT = 30;
+    const COUNT = 500;
 
     /** @var  ContainerInterface */
     private $container;
@@ -20,6 +20,7 @@ class LoadUsersData extends AbstractFixture implements ContainerAwareInterface, 
     {
         /** @var UserManager $userManager */
         $userManager = $this->container->get(UserManager::class);
+        $batchSize = 300;
 
         for ($i = 1; $i <= self::COUNT; $i++) {
             $user = $userManager->createUser();
@@ -29,6 +30,22 @@ class LoadUsersData extends AbstractFixture implements ContainerAwareInterface, 
             $userManager->update($user);
             $manager->persist($user);
             $this->addReference('user' . $i, $user);
+
+            if (($i % $batchSize) == 0 || $i == self::COUNT) {
+                $currentMemoryUsage = round(memory_get_usage(true) / 1024 / 1024);
+                $maxMemoryUsage = round(memory_get_peak_usage(true) / 1024 / 1024);
+                echo sprintf("%s Memory usage (currently) %dMB / (max) %dMB\n",
+                    $i,
+                    $currentMemoryUsage,
+                    $maxMemoryUsage
+                );
+
+                $manager->flush();
+                $manager->clear();
+
+                gc_collect_cycles();
+            }
+
         }
 
         $manager->flush();

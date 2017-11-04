@@ -1,5 +1,6 @@
 # Drop schema
 ./bin/console doctrine:schema:drop --full-database --force
+rm var/uploads/*
 
 # Create schema
 ./bin/console doctrine:schema:create

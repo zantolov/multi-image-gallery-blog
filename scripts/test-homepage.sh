@@ -1,0 +1,1 @@
+docker run --rm -t yokogawa/siege -d1 -c50 -t1M http://blog.app & docker run --rm -v `pwd`:/var/siege:ro -t yokogawa/siege -i --file=/var/siege/lazy-load-urls.txt -d1 -c50 -t1M && fg

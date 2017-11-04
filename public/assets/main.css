@@ -102,18 +102,18 @@ body {
 .single-gallery__modal-image {
   max-width: 100%; }
 
-.home {
+.home__galleries-container {
   display: flex;
   flex-wrap: wrap; }
-  .home .gallery {
+  .home__galleries-container .gallery {
     width: 200px;
     margin: 15px; }
-    .home .gallery__link {
+    .home__galleries-container .gallery__link {
       display: block;
       text-decoration: none !important; }
-    .home .gallery__name {
+    .home__galleries-container .gallery__name {
       font-size: 20px; }
-    .home .gallery__user {
+    .home__galleries-container .gallery__user {
       font-size: 12px; }
 
 .image-edit__image img {

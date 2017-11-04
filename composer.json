@@ -17,6 +17,7 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^2.4@dev",
         "fzaninotto/faker": "^1.8@dev",
+        "phpunit/phpunit": "^6.5@dev",
         "symfony/debug-bundle": "3.4.x-dev",
         "symfony/dotenv": "^3.3",
         "symfony/flex": "^1.0"

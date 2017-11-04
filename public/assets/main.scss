@@ -147,28 +147,32 @@ body {
 }
 
 .home {
-  display: flex;
-  flex-wrap: wrap;
 
-  .gallery {
-    width: 200px;
-    margin: 15px;
+  &__galleries-container {
+    display: flex;
+    flex-wrap: wrap;
 
-    &__link {
-      display: block;
-      text-decoration: none !important;
-    }
+    .gallery {
+      width: 200px;
+      margin: 15px;
 
-    &__name {
-      font-size: 20px;
-    }
+      &__link {
+        display: block;
+        text-decoration: none !important;
+      }
 
-    &__images-count {
+      &__name {
+        font-size: 20px;
+      }
 
-    }
+      &__images-count {
 
-    &__user {
-      font-size: 12px;
+      }
+
+      &__user {
+        font-size: 12px;
+      }
+
     }
 
   }
