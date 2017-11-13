@@ -1,7 +1,9 @@
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
-/var/
+/var/*
+!/var/demo-data/
+!/var/demo-data/sample-images/
 /vendor/
 ###< symfony/framework-bundle ###
 
