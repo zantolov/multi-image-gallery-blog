@@ -22,12 +22,16 @@ class LoadUsersData extends AbstractFixture implements ContainerAwareInterface, 
         $userManager = $this->container->get(UserManager::class);
         $batchSize = 300;
 
+        $encoder = $this->container->get('security.password_encoder');
+        $user = $userManager->createUser();
+        $encodedPassword = $encoder->encodePassword($user, '123456');
+
         for ($i = 1; $i <= self::COUNT; $i++) {
             $user = $userManager->createUser();
             $user->setEmail(sprintf('user%s@mailinator.com', $i));
             $user->setRoles(['ROLE_USER']);
-            $user->setPlainPassword('123456');
-            $userManager->update($user);
+            $user->setPassword($encodedPassword);
+//            $userManager->update($user);
             $manager->persist($user);
             $this->addReference('user' . $i, $user);
 
