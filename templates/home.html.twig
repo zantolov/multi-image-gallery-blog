@@ -33,8 +33,8 @@
             var $lazyLoadCta = $('.home__lazy-load-cta');
 
             function onScroll() {
-                var y = $(window).scrollTop();
-                if (y >= window.innerHeight - 100) {
+                var y = $(window).scrollTop() + $(window).outerHeight();
+                if (y >= $('body').innerHeight() - 100) {
                     $(window).off('scroll.lazy-load');
                     $lazyLoadCta.click();
                 }
