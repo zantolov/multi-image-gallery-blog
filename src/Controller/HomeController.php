@@ -31,7 +31,7 @@ class HomeController
      */
     public function homeAction()
     {
-        $galleries = $this->em->getRepository(Gallery::class)->findBy([], ['createdAt' => 'DESC'], self::PER_PAGE);
+        $galleries = $this->em->getRepository(Gallery::class)->findBy([], ['createdAt' => 'DESC']);
         $view = $this->twig->render('home.html.twig', [
             'galleries' => $galleries,
         ]);
