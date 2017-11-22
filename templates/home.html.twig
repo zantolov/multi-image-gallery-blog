@@ -21,3 +21,41 @@
     </div>
 
 {% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(function () {
+            var nextPage = 2;
+            var $galleriesContainer = $('.home__galleries-container');
+            var $lazyLoadCta = $('.home__lazy-load-cta');
+
+            function onScroll() {
+                var y = $(window).scrollTop() + $(window).outerHeight();
+                if (y >= $('body').innerHeight() - 100) {
+                    $(window).off('scroll.lazy-load');
+                    $lazyLoadCta.click();
+                }
+            }
+
+            $lazyLoadCta.on('click', function () {
+                var url = "{{ url('home.lazy-load') }}";
+                $.ajax({
+                    url: url,
+                    data: {page: nextPage},
+                    success: function (data) {
+                        if (data.success === true) {
+                            $galleriesContainer.append(data.data);
+                            nextPage++;
+                            $(window).on('scroll.lazy-load', onScroll);
+                        }
+                    }
+                });
+            });
+
+            $(window).on('scroll.lazy-load', onScroll);
+        });
+    </script>
+{% endblock %}
