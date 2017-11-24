@@ -18,7 +18,7 @@ class FileManager
         $this->path = $path;
     }
 
-    private function getUploadsDirectory()
+    public function getUploadsDirectory()
     {
         return $this->path;
     }
