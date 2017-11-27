@@ -96,6 +96,7 @@ body {
   &__items-container {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 36px;
   }
 
   &__name {
@@ -144,6 +145,30 @@ body {
   &__modal-image {
     max-width: 100%;
   }
+
+}
+
+.related-galleries,
+.newest-galleries {
+  .card {
+    width: 200px;
+    margin: 15px;
+
+    h1 {
+      font-size: 20px
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
 }
 
 .home {
@@ -196,3 +221,4 @@ body {
     margin: 20px 0;
   }
 }
+

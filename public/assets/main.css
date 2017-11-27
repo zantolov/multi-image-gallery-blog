@@ -73,7 +73,8 @@ body {
 
 .single-gallery__items-container {
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  margin-bottom: 36px; }
 .single-gallery__name {
   font-size: 24px; }
 .single-gallery__description {
@@ -101,6 +102,22 @@ body {
     font-size: 16px; }
 .single-gallery__modal-image {
   max-width: 100%; }
+
+.related-galleries .card,
+.newest-galleries .card {
+  width: 200px;
+  margin: 15px; }
+  .related-galleries .card h1,
+  .newest-galleries .card h1 {
+    font-size: 20px; }
+.related-galleries__title,
+.newest-galleries__title {
+  font-size: 20px;
+  margin-bottom: 6px; }
+.related-galleries__container,
+.newest-galleries__container {
+  display: flex;
+  flex-wrap: wrap; }
 
 .home__galleries-container {
   display: flex;
