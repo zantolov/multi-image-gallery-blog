@@ -29,8 +29,9 @@
                     <div class="single-gallery__item card">
 
                         {% autoescape false %}
-                        <img src="{{ image|getImageUrl(250) }}" alt="{{ image.originalFilename }}" data-srcset="{{ image|getImageSrcset }}"
-                             class="single-gallery__item-image card-img-top">
+                            <img src="{{ image|getImageUrl(250) }}" alt="{{ image.originalFilename }}"
+                                 data-srcset="{{ image|getImageSrcset }}"
+                                 class="single-gallery__item-image card-img-top">
                         {% endautoescape %}
 
                         <div class="card-body">
@@ -53,6 +54,14 @@
 
                     </div>
                 {% endfor %}
+            </div>
+
+            <div class="single-gallery__related">
+                {{ renderRelatedGalleries(gallery, 5) }}
+            </div>
+
+            <div class="single-gallery__newest">
+                {{ renderNewestGalleries(5) }}
             </div>
 
         </div>
