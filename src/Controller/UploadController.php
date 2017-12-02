@@ -107,7 +107,7 @@ class UploadController
             new GalleryCreatedEvent($gallery->getId())
         );
 
-        $this->flashBag->add('success', 'Gallery created!');
+        $this->flashBag->add('success', 'Gallery created! Images are now being processed.');
 
         return new JsonResponse([
             'success'     => true,
