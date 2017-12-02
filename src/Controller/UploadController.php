@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Gallery;
 use App\Entity\Image;
+use App\Event\GalleryCreatedEvent;
 use App\Service\FileManager;
 use App\Service\UserManager;
 use Doctrine\ORM\EntityManager;
 use Ramsey\Uuid\Uuid;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,13 +39,17 @@ class UploadController
     /** @var  UserManager */
     private $userManager;
 
+    /** @var  EventDispatcherInterface */
+    private $eventDispatcher;
+
     public function __construct(
         Twig_Environment $twig,
         FlashBagInterface $flashBag,
         RouterInterface $router,
         FileManager $fileManager,
         EntityManager $em,
-        UserManager $userManager
+        UserManager $userManager,
+        EventDispatcherInterface $eventDispatcher
     ) {
         $this->twig = $twig;
         $this->flashBag = $flashBag;
@@ -51,6 +57,7 @@ class UploadController
         $this->fileManager = $fileManager;
         $this->em = $em;
         $this->userManager = $userManager;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
@@ -80,7 +87,7 @@ class UploadController
         /** @var UploadedFile $file */
         foreach ($files as $file) {
             $filename = $file->getClientOriginalName();
-            $filepath = Uuid::getFactory()->uuid4();
+            $filepath = Uuid::getFactory()->uuid4()->toString() . '.' . $file->getClientOriginalExtension();
             $movedFile = $this->fileManager->upload($file, $filepath);
 
             $image = new Image(
@@ -94,6 +101,11 @@ class UploadController
 
         $this->em->persist($gallery);
         $this->em->flush();
+
+        $this->eventDispatcher->dispatch(
+            GalleryCreatedEvent::class,
+            new GalleryCreatedEvent($gallery->getId())
+        );
 
         $this->flashBag->add('success', 'Gallery created!');
 

@@ -4,6 +4,7 @@ namespace App\DataFixtures\ORM;
 
 use App\Entity\Gallery;
 use App\Entity\Image;
+use App\Event\GalleryCreatedEvent;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -11,6 +12,7 @@ use Faker\Factory;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class LoadGalleriesData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {
@@ -57,6 +59,11 @@ MD;
             }
 
             $manager->persist($gallery);
+
+            $this->container->get(EventDispatcherInterface::class)->dispatch(
+                GalleryCreatedEvent::class,
+                new GalleryCreatedEvent($gallery->getId())
+            );
 
             if (($i % $batchSize) == 0 || $i == self::COUNT) {
                 $currentMemoryUsage = round(memory_get_usage(true) / 1024 / 1024);

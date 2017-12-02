@@ -35,4 +35,9 @@ class FileManager
         return $this->getUploadsDirectory() . DIRECTORY_SEPARATOR . $filename;
     }
 
+    public function getPlaceholderImagePath()
+    {
+        return $this->getUploadsDirectory() . '/../placeholder.jpg';
+    }
+
 }

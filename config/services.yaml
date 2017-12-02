@@ -35,3 +35,6 @@ services:
     App\Service\FileManager:
       arguments:
         $path: '%kernel.project_dir%/var/uploads'
+
+    App\Command\:
+        resource: '../src/Command/*'

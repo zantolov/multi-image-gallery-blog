@@ -3,6 +3,7 @@
 namespace App\Twig;
 
 use App\Entity\Image;
+use App\Service\ImageResizer;
 use Symfony\Component\Routing\RouterInterface;
 use Twig_Extension;
 use Twig_SimpleFilter;
@@ -36,15 +37,21 @@ class ImageRendererExtension extends Twig_Extension
 
     public function getImageSrcset(Image $image)
     {
-        $id = $image->getId();
-        $sizes = [1120, 720, 400];
+        $sizes = [
+            ImageResizer::SIZE_1120,
+            ImageResizer::SIZE_720,
+            ImageResizer::SIZE_400,
+            ImageResizer::SIZE_250,
+        ];
+
         $string = '';
         foreach ($sizes as $size) {
             $string .= $this->router->generate('image.serve', [
-                'id' => $image->getId() . '--' . $size,
-            ], RouterInterface::ABSOLUTE_URL).' '.$size.'w, ';
+                    'id' => $image->getId() . '--' . $size,
+                ], RouterInterface::ABSOLUTE_URL) . ' ' . $size . 'w, ';
         }
         $string = trim($string, ', ');
+
         return html_entity_decode($string);
     }
 
