@@ -109,6 +109,11 @@ class ImageController extends Controller
         $response->headers->set('Content-Disposition',
             'attachment; filename="' . $image->getOriginalFilename() . '";');
 
+        // cache for 2 weeks
+        $response->setSharedMaxAge(1209600);
+        // (optional) set a custom Cache-Control directive
+        $response->headers->addCacheControlDirective('must-revalidate', true);
+        
         return $response;
 
 
