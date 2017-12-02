@@ -3,7 +3,8 @@
     <div class="gallery card" data-id="{{ gallery.id }}">
 
         <a class="gallery__link" href="{{ url('gallery.single-gallery', {id: gallery.id}) }}">
-            <img src="{{ gallery.images.first|getImageUrl }}" alt="{{ gallery.name }}"
+            <img src="{{ gallery.images.first|getImageUrl('250') }}"
+                 alt="{{ gallery.name }}"
                  class="gallery__leading-image card-img-top">
         </a>
 

@@ -18,7 +18,7 @@ class FileManager
         $this->path = $path;
     }
 
-    private function getUploadsDirectory()
+    public function getUploadsDirectory()
     {
         return $this->path;
     }
@@ -33,6 +33,11 @@ class FileManager
     public function getFilePath($filename)
     {
         return $this->getUploadsDirectory() . DIRECTORY_SEPARATOR . $filename;
+    }
+
+    public function getPlaceholderImagePath()
+    {
+        return $this->getUploadsDirectory() . '/../placeholder.jpg';
     }
 
 }

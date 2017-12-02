@@ -4,10 +4,13 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^7.0.8",
+        "league/glide": "^1.1@dev",
+        "pda/pheanstalk": "^3.1@dev",
         "ramsey/uuid-doctrine": "^1.4",
         "sensio/framework-extra-bundle": "^4.0@dev",
         "symfony/asset": "3.4.x-dev",
         "symfony/framework-bundle": "^3.3",
+        "symfony/monolog-bundle": "^3.0@dev",
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "^3.3",
         "symfony/twig-bundle": "^3.4",
