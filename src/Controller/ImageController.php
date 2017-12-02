@@ -114,6 +114,10 @@ class ImageController extends Controller
         // (optional) set a custom Cache-Control directive
         $response->headers->addCacheControlDirective('must-revalidate', true);
         
+        $date = new \DateTime();
+        $date->modify('+600 seconds');
+        $response->setExpires($date);
+        
         return $response;
 
 
